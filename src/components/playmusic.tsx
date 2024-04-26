@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { songs } from "@/assets/song";
 import {
   IconPlayerPause,
   IconPlayerPlayFilled,
@@ -9,25 +8,33 @@ import {
   IconVolume,
 } from "@tabler/icons-react";
 
-const MusicPlayer: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+interface songProp {
+  name: string;
+  artist: string;
+  song_mp3: string;
+  description: string;
+  song_image: string;
+  artist_image: string;
+}
+
+const MusicPlayer = ({
+  song,
+  setCurrentSongIndex,
+  isPlaying,
+  setIsPlaying,
+  playNext,
+  playPrev,
+}: {
+  song: songProp;
+  setCurrentSongIndex: React.Dispatch<React.SetStateAction<number>>;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  isPlaying: boolean;
+  playNext: () => void;
+  playPrev: () => void;
+}) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.5);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  //   const songs: Song[] = [
-  //     {
-  //       name: "Shape of You",
-  //       audio: shapeOfYou,
-  //     },
-  //     {
-  //       name: "Bohemian Rhapsody",
-  //       audio: SeeYouAgain,
-  //     },
-  //     // Add more songs as needed
-  //   ];
-
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -37,19 +44,9 @@ const MusicPlayer: React.FC = () => {
         audioRef.current.pause();
       }
     }
-  }, [isPlaying, currentSongIndex]);
+  }, [isPlaying]);
 
-  const currentSong = songs[currentSongIndex];
-
-  //   const playPauseHandler = () => {
-  //     if (audioRef.current) {
-  //       if (isPlaying) {
-  //         audioRef.current.play();
-  //       } else {
-  //         audioRef.current.pause();
-  //       }
-  //     }
-  //   };
+  // const currentSong = songs[currentSongIndex];
 
   const timeUpdateHandler = () => {
     if (audioRef.current) {
@@ -75,7 +72,7 @@ const MusicPlayer: React.FC = () => {
   };
 
   const nextSongHandler = () => {
-    setCurrentSongIndex((prevIndex) => (prevIndex + 1) % songs.length);
+    playNext();
     setIsPlaying(true); // Start playing the next song
     if (audioRef.current) {
       audioRef.current.play(); // Play the next song
@@ -83,9 +80,7 @@ const MusicPlayer: React.FC = () => {
   };
 
   const prevSongHandler = () => {
-    setCurrentSongIndex(
-      (prevIndex) => (prevIndex - 1 + songs.length) % songs.length
-    );
+    playPrev();
     setIsPlaying(true); // Start playing the previous song
     if (audioRef.current) {
       audioRef.current.play(); // Play the previous song
@@ -106,15 +101,10 @@ const MusicPlayer: React.FC = () => {
       <div className=" col-span-9 rounded-t-[10px] p-5 overflow-hidden  mr-8 bg-yellow backdrop-blur-xl   ">
         <div className=" py-2 items-center justify-between flex">
           <div className=" flex items-center gap-3">
-            <img
-              src={currentSong.song_image}
-              width={50}
-              height={50}
-              alt={currentSong.name}
-            />
+            <img src={song.song_image} width={50} height={50} alt={song.name} />
             <div>
-              <h5 className=" text-white font-semibold">{currentSong.name}</h5>
-              <p className=" text-white/70 text-sm ">{currentSong.artist}</p>
+              <h5 className=" text-white font-semibold">{song.name}</h5>
+              <p className=" text-white/70 text-sm ">{song.artist}</p>
             </div>
           </div>
 
@@ -146,7 +136,7 @@ const MusicPlayer: React.FC = () => {
             <div className="">
               <audio
                 ref={audioRef}
-                src={currentSong.song_mp3}
+                src={song.song_mp3}
                 onTimeUpdate={timeUpdateHandler}
                 onEnded={nextSongHandler}
               ></audio>
