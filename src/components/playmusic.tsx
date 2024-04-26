@@ -19,14 +19,12 @@ interface songProp {
 
 const MusicPlayer = ({
   song,
-  setCurrentSongIndex,
   isPlaying,
   setIsPlaying,
   playNext,
   playPrev,
 }: {
   song: songProp;
-  setCurrentSongIndex: React.Dispatch<React.SetStateAction<number>>;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   isPlaying: boolean;
   playNext: () => void;

@@ -63,7 +63,6 @@ const Home = () => {
                 currentSongIndex === index &&
                 currentSongIndex !== null && (
                   <MusicPlayer
-                    setCurrentSongIndex={setCurrentSongIndex}
                     song={songs[currentSongIndex]}
                     isPlaying={isPlaying}
                     setIsPlaying={setIsPlaying}
