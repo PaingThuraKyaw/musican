@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import Artist from "./pages/artist";
 import Albumns from "./pages/albums";
 import Favourite from "./pages/favourite";
+import Detail from "./pages/artist/components/detail";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const App = () => {
         {
           path: "/artist",
           element: <Artist />,
+        },
+        {
+          path: "/artist/:id",
+          element: <Detail />,
         },
         {
           path: "/albumns",
