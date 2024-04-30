@@ -13,10 +13,10 @@ const SlideBar = () => {
         {slideNav.map((nav) => (
           <Link
             to={nav.path}
-            className={`w-full pl-6 py-2  flex items-center gap-3  relative ${
+            className={`w-full pl-6 py-2 before:hover:bg-red-600/85 before:transition-all before:top-0 hover:text-red-600 transition-all duration-300 before:duration-300 before:hover:h-full before:absolute before:left-0 before:w-1    flex items-center gap-3  relative ${
               pathname === nav.path
-                ? " before:absolute before:left-0 before:w-1 before:h-full before:bg-red-600 before:text-red-600 text-red-600"
-                : "text-gray-400"
+                ? " before:h-full before:bg-red-600 before:text-red-600 text-red-600 "
+                : "text-gray-400 before:h-[0]"
             }`}
             key={nav.id}
           >

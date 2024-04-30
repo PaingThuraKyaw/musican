@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);  //global state
   const [isPlaying, setIsPlaying] = useState(false);
   const [isOpen, setOpen] = useState(false);
 
