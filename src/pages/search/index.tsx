@@ -30,7 +30,9 @@ const Search = () => {
   return (
     <div className="  mr-10 ">
       <div className=" flex items-center justify-between">
-        <h4 className=" text-white font-bold text-2xl ">All Songs</h4>
+        <h4 className=" text-white/80 font-bold text-xl ">
+          Search your <span className=" text-white ml-2 text-2xl" >" {search} "</span> 
+        </h4>
         <Link
           className=" hover:text-red-600 text-white font-semibold text-sm"
           to={"/see-all"}

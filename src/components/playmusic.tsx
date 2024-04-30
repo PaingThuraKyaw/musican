@@ -65,12 +65,11 @@ const MusicPlayer = ({
 
   const changeTimeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
-      const newTime = Number(e.target.value);
-      setCurrentTime(newTime);
-      audioRef.current.currentTime = newTime;
+      const newTime = parseFloat(e.target.value);
+      setCurrentTime(newTime); // Update the currentTime state
+      audioRef.current.currentTime = newTime; // Set the current time of the audio element
     }
   };
-
   const nextSongHandler = () => {
     playNext();
     setIsPlaying(true); // Start playing the next song
@@ -153,7 +152,9 @@ const MusicPlayer = ({
                 onChange={changeTimeHandler}
               />
               <div className="time text-sm flex justify-between">
-                <span className=" text-white text-[10px]">{formatTime(currentTime)}</span>
+                <span className=" text-white text-[10px]">
+                  {formatTime(currentTime)}
+                </span>
                 <span className=" text-white text-[10px]">
                   {formatTime(audioRef.current?.duration || 0)}
                 </span>

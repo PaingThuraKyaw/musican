@@ -2,7 +2,7 @@ import { axios } from "@/api/axio";
 import { useQuery } from "@tanstack/react-query";
 import { ApiSelect, selectMusic } from "./typed";
 
-const music = async (search ? : string) : Promise<ApiSelect<selectMusic>>  => {
+const music = async (search = "") : Promise<ApiSelect<selectMusic>>  => {
   const { data } = await axios.get(`music?search=${search}`);
   return data;
 };
