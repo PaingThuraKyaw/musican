@@ -1,14 +1,15 @@
 import MusicPlayer from "@/components/playmusic";
 import { useMusic } from "@/store/server/music/query";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const Home = () => {
+const Search = () => {
+  const { search } = useParams();
+
+  const { data } = useMusic(search);
   const [currentSongIndex, setCurrentSongIndex] = useState(0); //global state
   const [isPlaying, setIsPlaying] = useState(false);
   const [isOpen, setOpen] = useState(false);
-
-  const { data } = useMusic();
 
   const handleSongClick = (idx: number) => {
     setCurrentSongIndex(idx);
@@ -25,8 +26,6 @@ const Home = () => {
     if (data?.data)
       setCurrentSongIndex((prevIndex) => (prevIndex - 1) % data?.data.length);
   };
-
-  
 
   return (
     <div className="  mr-10 ">
@@ -84,4 +83,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Search;

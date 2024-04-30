@@ -53,12 +53,14 @@ const MusicPlayer = ({
   };
 
   const formatTime = (time: number) => {
+    console.log("Input time:", time);
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
-      2,
-      "0"
-    )}`;
+    const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
+      seconds
+    ).padStart(2, "0")}`;
+    console.log("Formatted time:", formattedTime);
+    return formattedTime;
   };
 
   const changeTimeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,7 +101,12 @@ const MusicPlayer = ({
       <div className=" col-span-9 rounded-t-[10px] p-5 overflow-hidden  mr-8 bg-yellow backdrop-blur-xl   ">
         <div className=" py-2 items-center justify-between flex">
           <div className=" flex items-center gap-3">
-            <img src={song.song_image} width={50} height={50} alt={song.name} />
+            <img
+              src={song?.song_image}
+              width={50}
+              height={50}
+              alt={song.name}
+            />
             <div>
               <h5 className=" text-white font-semibold">{song.name}</h5>
               <p className=" text-white/70 text-sm ">{song.artist}</p>
@@ -146,9 +153,7 @@ const MusicPlayer = ({
                 onChange={changeTimeHandler}
               />
               <div className="time text-sm flex justify-between">
-                <span className=" text-white text-[10px]">
-                  {formatTime(80)}
-                </span>
+                <span className=" text-white text-[10px]">{formatTime(currentTime)}</span>
                 <span className=" text-white text-[10px]">
                   {formatTime(audioRef.current?.duration || 0)}
                 </span>

@@ -5,6 +5,7 @@ import Artist from "./pages/artist";
 import Albumns from "./pages/albums";
 import Favourite from "./pages/favourite";
 import Detail from "./pages/artist/components/detail";
+import Search from "./pages/search";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -31,6 +32,14 @@ const App = () => {
         {
           path: "favourite",
           element: <Favourite />,
+        },
+        {
+          path: "search/:search",
+          element: <Search />,
+        },
+        {
+          path: "*",
+          element: <Home />,
         },
       ],
     },

@@ -4,8 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 const SlideBar = () => {
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   return (
     <div className="  ">
       <h4 className="  pl-6 pt-5 text-white text-2xl">Logo</h4>
