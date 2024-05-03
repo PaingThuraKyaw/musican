@@ -5,7 +5,7 @@ const SlideBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="  ">
+    <div className=" fixed ">
       <h4 className="  pl-6 pt-5 text-white text-2xl">Logo</h4>
       <div className=" space-y-4 mt-10">
         {slideNav.map((nav) => (

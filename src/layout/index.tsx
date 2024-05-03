@@ -11,7 +11,7 @@ const MaingLayout = () => {
     return (
       <div className="">
         <div className="grid  grid-cols-12 gap-16">
-          <div className=" min-h-screen bg-zinc-800/40 col-span-3">
+          <div className=" min-h-screen  bg-zinc-800/40 col-span-3">
             <SlideBar />
           </div>
           <div className=" col-span-9">

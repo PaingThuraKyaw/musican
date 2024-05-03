@@ -68,13 +68,16 @@ const Home = () => {
               {isOpen &&
                 currentSongIndex === index &&
                 currentSongIndex !== null && (
-                  <MusicPlayer
-                    song={data?.data[currentSongIndex]}
-                    isPlaying={isPlaying}
-                    setIsPlaying={setIsPlaying}
-                    playNext={playNext}
-                    playPrev={playPrev}
-                  />
+                  <>
+                  <div className=" mt-20" ></div>
+                    <MusicPlayer
+                      song={data?.data[currentSongIndex]}
+                      isPlaying={isPlaying}
+                      setIsPlaying={setIsPlaying}
+                      playNext={playNext}
+                      playPrev={playPrev}
+                    />
+                  </>
                 )}
             </div>
           );

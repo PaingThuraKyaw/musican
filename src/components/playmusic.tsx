@@ -146,9 +146,10 @@ const MusicPlayer = ({
               ></audio>
               <input
                 type="range"
-                className="w-[300px] h-[5px] "
+                className="w-[300px] h-[5px]  "
                 value={currentTime}
                 max={audioRef.current?.duration || 0}
+                disabled
                 onChange={changeTimeHandler}
               />
               <div className="time text-sm flex justify-between">

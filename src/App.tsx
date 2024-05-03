@@ -6,6 +6,8 @@ import Albumns from "./pages/albums";
 import Favourite from "./pages/favourite";
 import Detail from "./pages/artist/components/detail";
 import Search from "./pages/search";
+import ArtistDetail from "./pages/artist/components/detail";
+import AlbumDetail from "./pages/albums/components/detail";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -36,6 +38,14 @@ const App = () => {
         {
           path: "search/:search",
           element: <Search />,
+        },
+        {
+          path: "artist/:id",
+          element: <ArtistDetail />,
+        },
+        {
+          path : 'albumns/:id',
+          element : <AlbumDetail/>
         },
         {
           path: "*",
