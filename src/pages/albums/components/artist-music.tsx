@@ -1,14 +1,18 @@
 import MusicPlayer from "@/components/playmusic";
-import { useMusic } from "@/store/server/music/query";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
-const Home = () => {
+interface musicProp {
+  name: string;
+  song_mp3: string;
+  description: string;
+  song_image: string;
+  release_date: string;
+}
+
+const ArtistMusic = ({ music }: { music: musicProp[] }) => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0); //global state
   const [isPlaying, setIsPlaying] = useState(false);
   const [isOpen, setOpen] = useState(false);
-
-  const { data } = useMusic();
 
   const handleSongClick = (idx: number) => {
     setCurrentSongIndex(idx);
@@ -17,31 +21,23 @@ const Home = () => {
   };
 
   const playNext = () => {
-    if (data?.data)
-      setCurrentSongIndex((prevIndex) => (prevIndex + 1) % data?.data.length);
+    if (music.length)
+      setCurrentSongIndex((prevIndex) => (prevIndex + 1) % music.length);
   };
 
   const playPrev = () => {
-    if (data?.data)
-      setCurrentSongIndex((prevIndex) => (prevIndex - 1) % data?.data.length);
+    if (music.length)
+      setCurrentSongIndex((prevIndex) => (prevIndex - 1) % music.length);
   };
 
-  
-
   return (
-    <div className={`  mr-10 ${isOpen && 'mb-40'}`} >
+    <div className={`relative mt-5   mr-10 ${isOpen && 'mb-40'} `}>
       <div className=" flex items-center justify-between">
-        <h4 className=" text-white font-bold text-2xl ">All Songs</h4>
-        <Link
-          className=" hover:text-red-600 text-white font-semibold text-sm"
-          to={"/see-all"}
-        >
-          sell all
-        </Link>
+        <h4 className=" text-white font-bold text-2xl ">Artist Songs</h4>
       </div>
 
       <div className=" mt-5 grid grid-cols-5 gap-5">
-        {data?.data.map((song, index) => {
+        {music.map((song, index) => {
           return (
             <div key={index}>
               <div
@@ -58,9 +54,6 @@ const Home = () => {
                   <h5 className=" font-semibold  text-white/80 text-center">
                     {song.name}
                   </h5>
-                  <p className=" text-center text-white/60 text-sm ">
-                    {song.artist}
-                  </p>
                 </div>
                 {/* audio */}
               </div>
@@ -70,7 +63,7 @@ const Home = () => {
                 currentSongIndex !== null && (
                   <>
                     <MusicPlayer
-                      song={data?.data[currentSongIndex]}
+                      song={music[currentSongIndex]}
                       isPlaying={isPlaying}
                       setIsPlaying={setIsPlaying}
                       playNext={playNext}
@@ -86,4 +79,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ArtistMusic;

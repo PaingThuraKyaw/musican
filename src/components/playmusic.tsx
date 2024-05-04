@@ -10,12 +10,14 @@ import {
 
 interface songProp {
   name: string;
-  artist: string;
+  artist ? : string;
   song_mp3: string;
   description: string;
   song_image: string;
-  artist_image: string;
+  artist_image ? : string;
 }
+
+
 
 const MusicPlayer = ({
   song,
